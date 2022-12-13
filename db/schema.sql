@@ -58,22 +58,22 @@ CREATE TABLE `comments` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `corperation`
+-- Table structure for table `corporation`
 --
 
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `corperation` (
+CREATE TABLE `corporation` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
-  `corperation_name` varchar(300) NOT NULL,
+  `corporation_name` varchar(300) NOT NULL,
   `image` varchar(500) NOT NULL,
   `introduction` varchar(250) NOT NULL,
   `url` varchar(500) NOT NULL,
   `field` varchar(300) NOT NULL,
   `detail_introduction` varchar(2500) NOT NULL,
   `members_benefits` varchar(250) NOT NULL,
-  `corperation_number` varchar(500) NOT NULL,
+  `corporation_number` varchar(500) NOT NULL,
   `introduction_file` varchar(500) NOT NULL,
   `place_id` int NOT NULL,
   `created_at` datetime NOT NULL DEFAULT (now()),
@@ -81,8 +81,8 @@ CREATE TABLE `corperation` (
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
   KEY `place_id` (`place_id`),
-  CONSTRAINT `corperation_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  CONSTRAINT `corperation_ibfk_2` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`)
+  CONSTRAINT `corporation_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  CONSTRAINT `corporation_ibfk_2` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

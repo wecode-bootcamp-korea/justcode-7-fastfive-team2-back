@@ -31,17 +31,17 @@ CREATE TABLE IF NOT EXISTS `places` (
   `detail_name` varchar(50) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS `corperation` (
+CREATE TABLE IF NOT EXISTS `corporation` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
-  `corperation_name` varchar(300) NOT NULL,
+  `corporation_name` varchar(300) NOT NULL,
   `image` varchar(500) NOT NULL,
   `introduction` varchar(250) NOT NULL,
   `url` varchar(500) NOT NULL,
   `field` varchar(300) NOT NULL,
   `detail_introduction` varchar(2500) NOT NULL,
   `members_benefits` varchar(250) NOT NULL,
-  `corperation_number` varchar(500) NOT NULL,
+  `corporation_number` varchar(500) NOT NULL,
   `introduction_file` varchar(500) NOT NULL,
   `place_id` int NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT (now()),
@@ -71,9 +71,9 @@ CREATE UNIQUE INDEX `users` ON `users` (`email`);
 
 ALTER TABLE `users` ADD FOREIGN KEY (`grade_id`) REFERENCES `grades` (`id`);
 
-ALTER TABLE `corperation` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+ALTER TABLE `corporation` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
-ALTER TABLE `corperation` ADD FOREIGN KEY (`place_id`) REFERENCES `places` (`id`);
+ALTER TABLE `corporation` ADD FOREIGN KEY (`place_id`) REFERENCES `places` (`id`);
 
 ALTER TABLE `categories` ADD FOREIGN KEY (`detail_id`) REFERENCES `category_details` (`id`);
 
@@ -92,7 +92,7 @@ DROP TABLE users;
 DROP TABLE category_details;
 DROP TABLE categories;
 DROP TABLE places;
-DROP TABLE corperation;
+DROP TABLE corporation;
 DROP TABLE comments;
 DROP TABLE replies;
 

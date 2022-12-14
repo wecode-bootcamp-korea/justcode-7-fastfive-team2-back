@@ -23,7 +23,9 @@ CREATE TABLE IF NOT EXISTS `category_details` (
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(200) NOT NULL
+  `category_name` varchar(200) NOT NULL,
+  `category_image` varchar(500) NOT NULL,
+  `category_description` varchar(1000) NULL
 );
 
 

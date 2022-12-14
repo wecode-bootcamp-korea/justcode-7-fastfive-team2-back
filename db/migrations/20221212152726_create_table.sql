@@ -16,19 +16,20 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 CREATE TABLE IF NOT EXISTS `category_details` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `detail_name` varchar(200) NOT NULL
+  `detail_name` varchar(200) NOT NULL,
+  `category_id` int NOT NULL
+
 );
 
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `category_name` varchar(200) NOT NULL,
-  `detail_id` int NOT NULL
+  `category_name` varchar(200) NOT NULL
 );
 
 
 CREATE TABLE IF NOT EXISTS `places` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
-  `detail_name` varchar(50) NOT NULL
+  `place_name` varchar(50) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS `corporation` (
@@ -75,7 +76,7 @@ ALTER TABLE `corporation` ADD FOREIGN KEY (`category_id`) REFERENCES `categories
 
 ALTER TABLE `corporation` ADD FOREIGN KEY (`place_id`) REFERENCES `places` (`id`);
 
-ALTER TABLE `categories` ADD FOREIGN KEY (`detail_id`) REFERENCES `category_details` (`id`);
+ALTER TABLE `category_details` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
 ALTER TABLE `comments` ADD FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 

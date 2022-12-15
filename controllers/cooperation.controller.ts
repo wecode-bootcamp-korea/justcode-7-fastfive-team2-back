@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
 import cooperationService from "../services/cooperation.service";
+import { checkRequireKeys } from "./util";
 
 type posting_required_keys_type = {
   category: string;
+  category_detail?: string;
   cooperationName: string;
   cooperationImage: string;
   cooperationIntroduction: string;
@@ -18,6 +20,7 @@ type posting_required_keys_type = {
 const posting = async (req: Request, res: Response) => {
   const {
     category,
+    category_detail,
     cooperationName,
     cooperationImage,
     cooperationIntroduction,
@@ -30,25 +33,22 @@ const posting = async (req: Request, res: Response) => {
     cooperationPlace,
   } = req.body;
 
-  // const posting_required_keys: posting_required_keys_type = {
-  //   category,
-  //   cooperationName,
-  //   cooperationImage,
-  //   cooperationIntroduction,
-  //   cooperationField,
-  //   cooperationNumber,
-  //   cooperationFile,
-  //   cooperationPlace,
-  // };
+  const posting_required_keys: posting_required_keys_type = {
+    category,
+    cooperationName,
+    cooperationImage,
+    cooperationIntroduction,
+    cooperationField,
+    cooperationNumber,
+    cooperationFile,
+    cooperationPlace,
+  };
 
-  // Object.keys(posting_required_keys).map((key) => {
-  //   if (!posting_required_keys[key]) {
-  //     throw new Error(`KEY_ERROR: ${key}`);
-  //   }
-  // });
+  checkRequireKeys(posting_required_keys);
 
   const postCooperation = await cooperationService.postCooperation(
     category,
+    category_detail,
     cooperationName,
     cooperationImage,
     cooperationIntroduction,

@@ -18,8 +18,11 @@
 CREATE TABLE `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_name` varchar(200) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `detail_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `detail_id` (`detail_id`),
+  CONSTRAINT `categories_ibfk_1` FOREIGN KEY (`detail_id`) REFERENCES `category_details` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -31,11 +34,8 @@ CREATE TABLE `categories` (
 CREATE TABLE `category_details` (
   `id` int NOT NULL AUTO_INCREMENT,
   `detail_name` varchar(200) NOT NULL,
-  `category_id` int NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `category_id` (`category_id`),
-  CONSTRAINT `category_details_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +97,7 @@ CREATE TABLE `grades` (
   `grade_name` varchar(100) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT (now()),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,9 +108,9 @@ CREATE TABLE `grades` (
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `places` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `place_name` varchar(50) NOT NULL,
+  `detail_name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,11 +164,11 @@ CREATE TABLE `users` (
   UNIQUE KEY `users` (`email`),
   KEY `grade_id` (`grade_id`),
   CONSTRAINT `users_ibfk_1` FOREIGN KEY (`grade_id`) REFERENCES `grades` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping routines for database 'fastfive'
+-- Dumping routines for database 'project_fastfive'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -188,8 +188,5 @@ CREATE TABLE `users` (
 
 LOCK TABLES `schema_migrations` WRITE;
 INSERT INTO `schema_migrations` (version) VALUES
-  ('20221212152726'),
-  ('20221213193349'),
-  ('20221213193359'),
-  ('20221213203656');
+  ('20221212152726');
 UNLOCK TABLES;

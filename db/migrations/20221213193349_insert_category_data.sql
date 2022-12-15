@@ -1,19 +1,19 @@
 -- migrate:up
 INSERT INTO
-`categories`(`category_name`,'category_image',`category_description`)
+`categories`(`category_name`,`category_image`,`category_description`)
 VALUES
-("IT",'https://pixabay.com/images/id-4463031/','전기 통신, 방송, 컴퓨팅(정보처리, 컴퓨터 네트워크, 컴퓨터 하드웨어, 컴퓨터 소프트웨어, 멀티미디어), 통신망 등 사회 기반을 형성하는 유형 및 무형의 기술 분야'),
-("광고 마케팅",'https://pixabay.com/images/id-1433427/','시장 경제(영어: exchange relationship) 또는 수요를 관리하는 경영학의 한 분야'),
-("콘텐츠",'https://pixabay.com/images/id-1917737/','각종 매체가 최종 소비자(end user)에게 제공하는 분야'),
-("개발",'https://pixabay.com/images/id-4463031/','시스템이나 서비스를 구현하기 위해 프로그램을 개발 분야'),
-("디자인",'https://pixabay.com/images/id-1210160/','제품의 디자인 컨셉을 수립하고 시각적으로 구체화하여 상품화하는 분야'),
-("기획 컨설팅",'https://pixabay.com/images/id-3031678/','조직적인 비전을 위한 전략적 목표를 세우고 그 실현을 위한 방안을 수립하며 실천 상황을 점검하는 분야'),
-("법률",'https://pixabay.com/images/id-719066/','법률을 적용하는 분야'),
-("세무 회계",'https://pixabay.com/images/id-1680905/','기업의 활동을 위하여 주어진 세법범위 내에서 조세부담을 최소화 시키는 조세전략을 포함하고 정확한 과세소득과 과세표준 및 세액을 산출하여 과세당국에 신고·납부 하는 분야'),
-("교육",'https://pixabay.com/images/id-3033196/','지식이나 기술을 가르치는 분야'),
-("금융",'https://pixabay.com/images/id-1523383/','금융시장 및 금융기관과 이들을 형성하고 운영하며 원활하게 기능하도록 하는 분야'),
-("그외1",'https://pixabay.com/images/id-1001405/'),
-("그외2",'https://pixabay.com/images/id-2968279/');
+("IT","https://pixabay.com/images/id-4463031/","전기 통신, 방송, 컴퓨팅(정보처리, 컴퓨터 네트워크, 컴퓨터 하드웨어, 컴퓨터 소프트웨어, 멀티미디어), 통신망 등 사회 기반을 형성하는 유형 및 무형의 기술 분야"),
+("광고 마케팅","https://pixabay.com/images/id-1433427/","시장 경제(영어: exchange relationship) 또는 수요를 관리하는 경영학의 한 분야"),
+("콘텐츠","https://pixabay.com/images/id-1917737/","각종 매체가 최종 소비자(end user)에게 제공하는 분야"),
+("개발","https://pixabay.com/images/id-4463031/","시스템이나 서비스를 구현하기 위해 프로그램을 개발 분야"),
+("디자인","https://pixabay.com/images/id-1210160/","제품의 디자인 컨셉을 수립하고 시각적으로 구체화하여 상품화하는 분야"),
+("기획 컨설팅","https://pixabay.com/images/id-3031678/","조직적인 비전을 위한 전략적 목표를 세우고 그 실현을 위한 방안을 수립하며 실천 상황을 점검하는 분야"),
+("법률","https://pixabay.com/images/id-719066/","법률을 적용하는 분야"),
+("세무 회계","https://pixabay.com/images/id-1680905/","기업의 활동을 위하여 주어진 세법범위 내에서 조세부담을 최소화 시키는 조세전략을 포함하고 정확한 과세소득과 과세표준 및 세액을 산출하여 과세당국에 신고·납부 하는 분야"),
+("교육","https://pixabay.com/images/id-3033196/","지식이나 기술을 가르치는 분야"),
+("금융","https://pixabay.com/images/id-1523383/","금융시장 및 금융기관과 이들을 형성하고 운영하며 원활하게 기능하도록 하는 분야"),
+("그외1","https://pixabay.com/images/id-1001405/", ""),
+("그외2","https://pixabay.com/images/id-2968279/",  "");
 
 INSERT INTO
 `category_details`(`detail_name`,`category_id`)

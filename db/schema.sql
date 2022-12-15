@@ -18,6 +18,8 @@
 CREATE TABLE `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_name` varchar(200) NOT NULL,
+  `category_image` varchar(500) NOT NULL,
+  `category_description` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -168,7 +170,7 @@ CREATE TABLE `users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping routines for database 'fastfive'
+-- Dumping routines for database 'project_fastfive'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

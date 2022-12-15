@@ -10,3 +10,8 @@ export interface Corporation {
   introFile: string;
   placeName: string;
 }
+
+export interface User {
+  email: string;
+  password: string;
+}

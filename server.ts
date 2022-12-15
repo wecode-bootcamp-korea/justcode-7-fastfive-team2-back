@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import createApp from ".";
+import createApp from "./index";
 
 const startServer = async () => {
   const app = createApp();

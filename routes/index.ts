@@ -1,8 +1,8 @@
 import express from "express";
-import userRouter from "./userRouter";
+import cooperationRouter from "./cooperation.router";
 
 const router = express.Router();
 
-router.use("/users", userRouter);
+router.use("/cooperation", cooperationRouter);
 
 export default router;

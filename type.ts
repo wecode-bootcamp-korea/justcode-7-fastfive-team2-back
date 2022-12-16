@@ -16,17 +16,17 @@ export interface User {
   password: string;
 }
 
-export interface cooperationInfo {
-  category: string;
-  cooperationName: string;
-  cooperationImage: string;
-  cooperationIntroduction: string;
-  cooperationField: string;
-  cooperationNumber: string;
-  cooperationFile: string;
-  cooperationPlace: string;
-  category_detail?: string;
-  cooperationURL?: string;
-  cooperationDetail?: string;
-  membersBenefit?: string;
+export interface CorporationInfo {
+  categoryName: string;
+  corporationName: string;
+  image: string;
+  introduction: string;
+  field: string;
+  corporationNumber: string;
+  introFile: string;
+  placeName: string;
+  detailName?: string;
+  url?: string;
+  detailIntro?: string;
+  membersBenefits?: string;
 }

@@ -1,5 +1,52 @@
 import myDataSource from "./index";
 
+const posting = async (
+  category: string,
+  cooperationName: string,
+  cooperationImage: string,
+  cooperationIntroduction: string,
+  cooperationField: string,
+  cooperationNumber: string,
+  cooperationFile: string,
+  cooperationPlace: string,
+  category_detail?: string,
+  cooperationURL?: string,
+  cooperationDetail?: string,
+  membersBenefit?: string
+) => {
+  await myDataSource.query(
+    `
+        INSERT INTO corporation (
+          category_id, 
+          corporation_name,
+          image, 
+          introduction, 
+          url, 
+          field, 
+          detail_introduction, 
+          members_benefits, 
+          corporation_number, 
+          introduction_file, 
+          place_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `,
+    [
+      category,
+      category_detail,
+      cooperationName,
+      cooperationImage,
+      cooperationIntroduction,
+      cooperationURL,
+      cooperationField,
+      cooperationDetail,
+      membersBenefit,
+      cooperationNumber,
+      cooperationFile,
+      cooperationPlace,
+    ]
+  );
+};
+
 const findCorporationDetail = async (corporationId: string) => {
   return await myDataSource.query(
     `
@@ -32,5 +79,6 @@ const findCorporationDetail = async (corporationId: string) => {
 };
 
 export default {
+  posting,
   findCorporationDetail,
 };

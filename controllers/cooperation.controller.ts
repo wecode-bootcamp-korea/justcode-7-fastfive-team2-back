@@ -1,20 +1,20 @@
 import { Request, Response } from "express";
 import cooperationService from "../services/cooperation.service";
-import { checkRequireKeys } from "./util";
+import { checkDataIsNotEmpty } from "../util/myutil";
 
 type posting_required_keys_type = {
   category: string;
-  category_detail?: string;
   cooperationName: string;
   cooperationImage: string;
   cooperationIntroduction: string;
-  cooperationURL?: string;
   cooperationField: string;
-  cooperationDetail?: string;
-  membersBenefit?: string;
   cooperationNumber: string;
   cooperationFile: string;
   cooperationPlace: string;
+  category_detail?: string;
+  cooperationURL?: string;
+  cooperationDetail?: string;
+  membersBenefit?: string;
 };
 
 const posting = async (req: Request, res: Response) => {
@@ -44,7 +44,7 @@ const posting = async (req: Request, res: Response) => {
     cooperationPlace,
   };
 
-  checkRequireKeys(posting_required_keys);
+  checkDataIsNotEmpty(posting_required_keys);
 
   const postCooperation = await cooperationService.postCooperation(
     category,

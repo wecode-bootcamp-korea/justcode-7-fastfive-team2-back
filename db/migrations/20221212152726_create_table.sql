@@ -37,6 +37,7 @@ CREATE TABLE IF NOT EXISTS `places` (
 CREATE TABLE IF NOT EXISTS `corporation` (
   `id` int PRIMARY KEY NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
+  `category_detail_id` int NULL, 
   `corporation_name` varchar(300) NOT NULL,
   `image` varchar(500) NOT NULL,
   `introduction` varchar(250) NOT NULL,
@@ -75,6 +76,8 @@ CREATE UNIQUE INDEX `users` ON `users` (`email`);
 ALTER TABLE `users` ADD FOREIGN KEY (`grade_id`) REFERENCES `grades` (`id`);
 
 ALTER TABLE `corporation` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
+
+ALTER TABLE `corporation` ADD FOREIGN KEY (`category_detail_id`) REFERENCES `category_details` (`id`);
 
 ALTER TABLE `corporation` ADD FOREIGN KEY (`place_id`) REFERENCES `places` (`id`);
 

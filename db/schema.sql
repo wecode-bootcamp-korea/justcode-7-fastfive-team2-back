@@ -68,6 +68,7 @@ CREATE TABLE `comments` (
 CREATE TABLE `corporation` (
   `id` int NOT NULL AUTO_INCREMENT,
   `category_id` int NOT NULL,
+  `category_detail_id` int DEFAULT NULL,
   `corporation_name` varchar(300) NOT NULL,
   `image` varchar(500) NOT NULL,
   `introduction` varchar(250) NOT NULL,
@@ -82,9 +83,11 @@ CREATE TABLE `corporation` (
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'update time',
   PRIMARY KEY (`id`),
   KEY `category_id` (`category_id`),
+  KEY `category_detail_id` (`category_detail_id`),
   KEY `place_id` (`place_id`),
   CONSTRAINT `corporation_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  CONSTRAINT `corporation_ibfk_2` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`)
+  CONSTRAINT `corporation_ibfk_2` FOREIGN KEY (`category_detail_id`) REFERENCES `category_details` (`id`),
+  CONSTRAINT `corporation_ibfk_3` FOREIGN KEY (`place_id`) REFERENCES `places` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -170,7 +173,7 @@ CREATE TABLE `users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping routines for database 'project_fastfive'
+-- Dumping routines for database 'fastfive'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

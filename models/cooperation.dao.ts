@@ -7,11 +7,12 @@ const postCooperation = async (
   cooperationIntroduction: string,
   cooperationURL: string,
   cooperationField: string,
-  cooperationDetail: string,
-  membersBenefit: string,
   cooperationNumber: string,
   cooperationFile: string,
-  cooperationPlace: string
+  cooperationPlace: string,
+  category_detail?: string,
+  cooperationDetail?: string,
+  membersBenefit?: string
 ) => {
   await myDataSource.query(
     `
@@ -27,10 +28,11 @@ const postCooperation = async (
           corporation_number, 
           introduction_file, 
           place_id)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `,
     [
       category,
+      category_detail,
       cooperationName,
       cooperationImage,
       cooperationIntroduction,

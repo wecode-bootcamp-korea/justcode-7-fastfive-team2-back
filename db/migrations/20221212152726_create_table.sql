@@ -57,6 +57,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
   `users_id` int NOT NULL,
   `content` varchar(2500) NOT NULL,
   `secret` int NOT NULL DEFAULT 0,
+  `corporation_id` int NOT NULL,
   `created_at` DATETIME NOT NULL DEFAULT (now()),
   `updated_at` DATETIME default CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL COMMENT 'update time'
 );
@@ -84,6 +85,8 @@ ALTER TABLE `corporation` ADD FOREIGN KEY (`place_id`) REFERENCES `places` (`id`
 ALTER TABLE `category_details` ADD FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
 ALTER TABLE `comments` ADD FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
+
+ALTER TABLE `comments` ADD FOREIGN KEY (`corporation_id`) REFERENCES `corporation` (`id`);
 
 ALTER TABLE `replies` ADD FOREIGN KEY (`users_id`) REFERENCES `users` (`id`);
 

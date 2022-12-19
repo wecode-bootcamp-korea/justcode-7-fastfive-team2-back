@@ -4,8 +4,8 @@ const findCommentById = async (corporationId: string) => {
   return await commentDao.findCommentById(corporationId);
 };
 
-const addComment = async (content: string) => {
-  await commentDao.findCommentById(content);
+const addComment = async (corporationId: number, content: string) => {
+  await commentDao.addComment(corporationId, content);
 };
 
 const updateComment = async (commentId: number, content: string) => {

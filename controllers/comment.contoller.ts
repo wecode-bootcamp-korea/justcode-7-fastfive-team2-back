@@ -25,11 +25,13 @@ const findCommentById = async (req: Request, res: Response) => {
 const addComment = async (req: Request, res: Response) => {
   try {
     //userInfo 들어가야함
-    const content = req.body;
+    const { corporationId, content } = req.body;
 
-    checkDataIsNotEmpty(content);
+    const REQUIRED_KEYS = { corporationId, content };
 
-    await commentService.addComment(content);
+    checkDataIsNotEmpty(REQUIRED_KEYS);
+
+    await commentService.addComment(corporationId, content);
 
     res.status(200).json({ message: "success" });
   } catch (err: any) {

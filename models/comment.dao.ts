@@ -8,7 +8,7 @@ const findCommentById = async (corporationId: string) => {
         users.id as user_id,
         users.email ,
         comments.content,
-        corporation.id AS corporation_id,
+        corporation.id ,
         comments.created_at,
         comments.updated_at
       FROM comments
@@ -18,9 +18,8 @@ const findCommentById = async (corporationId: string) => {
   );
 };
 
-const addComment = async (content: string) => {
+const addComment = async (corporationId: number, content: string) => {
   await myDataSource.query(
-    //comment테이블에 기업id 추가후 추가 작업
     `
       INSERT INTO comments(
         user_id,
@@ -28,7 +27,7 @@ const addComment = async (content: string) => {
         posting_id
       )
       VALUES(?, ?, ?);`,
-    [content]
+    [corporationId, content]
   );
 };
 

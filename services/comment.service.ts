@@ -5,7 +5,9 @@ const findCommentById = async (corporationId: string) => {
   return await commentDao.findCommentById(corporationId);
 };
 
-const addComment = async (content: string) => {};
+const addComment = async (content: string) => {
+  await commentDao.findCommentById(content);
+};
 
 const updateComment = async () => {};
 

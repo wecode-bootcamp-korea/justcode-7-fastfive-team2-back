@@ -9,7 +9,9 @@ const addComment = async (content: string) => {
   await commentDao.findCommentById(content);
 };
 
-const updateComment = async () => {};
+const updateComment = async (commentId: number, content: string) => {
+  await commentDao.updateComment(commentId, content);
+};
 
 const deleteComment = async () => {};
 

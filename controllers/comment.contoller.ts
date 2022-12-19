@@ -40,6 +40,16 @@ const addComment = async (req: Request, res: Response) => {
 
 const updateComment = async (req: Request, res: Response) => {
   try {
+    //userInfo 들어가야함
+    const { commentId, content } = req.body;
+
+    const REQUIRED_KEYS = { commentId, content };
+
+    checkDataIsNotEmpty(REQUIRED_KEYS);
+
+    await commentService.updateComment(commentId, content);
+
+    res.status(200).json({ message: "success" });
   } catch (err) {}
 };
 

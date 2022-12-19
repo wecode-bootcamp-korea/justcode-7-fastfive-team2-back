@@ -32,7 +32,19 @@ const addComment = async (content: string) => {
   );
 };
 
-const updateComment = async () => {};
+const updateComment = async (commentId: number, content: string) => {
+  await myDataSource.query(
+    //comment테이블에 기업id 추가후 추가 작업
+    `
+      UPDATE
+        comments
+      SET
+      content = ?
+      WHERE
+        id = ?`,
+    [content, commentId]
+  );
+};
 
 const deleteComment = async () => {};
 

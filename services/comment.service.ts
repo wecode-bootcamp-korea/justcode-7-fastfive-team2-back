@@ -1,5 +1,4 @@
 import commentDao from "../models/comment.dao";
-import { Corporation } from "../type";
 
 const findCommentById = async (corporationId: string) => {
   return await commentDao.findCommentById(corporationId);
@@ -13,6 +12,8 @@ const updateComment = async (commentId: number, content: string) => {
   await commentDao.updateComment(commentId, content);
 };
 
-const deleteComment = async () => {};
+const deleteComment = async (commentId: number) => {
+  await commentDao.deleteComment(commentId);
+};
 
 export default { findCommentById, addComment, updateComment, deleteComment };

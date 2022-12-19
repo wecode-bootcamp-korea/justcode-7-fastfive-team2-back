@@ -34,18 +34,26 @@ const addComment = async (content: string) => {
 
 const updateComment = async (commentId: number, content: string) => {
   await myDataSource.query(
-    //comment테이블에 기업id 추가후 추가 작업
     `
       UPDATE
         comments
       SET
-      content = ?
+        content = ?
       WHERE
         id = ?`,
     [content, commentId]
   );
 };
 
-const deleteComment = async () => {};
+const deleteComment = async (commentId: number) => {
+  await myDataSource.query(
+    `
+    DELETE FROM
+      comments
+    WHERE
+      id = ?`,
+    [commentId]
+  );
+};
 
 export default { findCommentById, addComment, updateComment, deleteComment };

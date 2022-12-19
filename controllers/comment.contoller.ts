@@ -50,12 +50,27 @@ const updateComment = async (req: Request, res: Response) => {
     await commentService.updateComment(commentId, content);
 
     res.status(200).json({ message: "success" });
-  } catch (err) {}
+  } catch (err: any) {
+    console.log(err);
+    res.status(err.statusCode).json({ message: err.message });
+  }
 };
 
 const deleteComment = async (req: Request, res: Response) => {
   try {
-  } catch (err) {}
+    const { commentId } = req.body;
+
+    const REQUIRED_KEYS = { commentId };
+
+    checkDataIsNotEmpty(REQUIRED_KEYS);
+
+    await commentService.deleteComment(commentId);
+
+    res.status(200).json({ message: "success" });
+  } catch (err: any) {
+    console.log(err);
+    res.status(err.statusCode).json({ message: err.message });
+  }
 };
 
 export default { findCommentById, addComment, updateComment, deleteComment };

@@ -30,3 +30,9 @@ export interface CorporationInfo {
   detailIntro?: string;
   membersBenefits?: string;
 }
+
+export interface Example {
+  place_id: string;
+  category_id: string;
+  category_detail_id: string;
+}

@@ -32,7 +32,13 @@ export interface CorporationInfo {
 }
 
 export interface Example {
-  place_id: string;
-  category_id: string;
-  category_detail_id: string;
+  place_id?: number;
+  category_id?: number;
+  category_detail_id?: number;
+}
+
+export interface listinfo {
+  corporation_name: string;
+  image: string;
+  introduction: string;
 }

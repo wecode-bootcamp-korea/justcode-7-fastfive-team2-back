@@ -1,5 +1,69 @@
 import myDataSource from "./index";
 
+const place = async (category_id?: number) => {
+  let a = await myDataSource.query(
+    `SELECT
+    JSON_ARRAYAGG(
+  JSON_OBJECT("id", places.id,
+  "name", places.place_name)
+ ) as places
+ FROM
+places
+`
+  );
+
+  let b = await myDataSource.query(
+    `SELECT
+   JSON_ARRAYAGG(
+    JSON_OBJECT("id", categories.id,
+    "name", categories.category_name)
+  ) as categories
+   FROM
+  categories
+  `
+  );
+
+  // let c = await myDataSource.query(
+  //   `SELECT
+  //    JSON_ARRAYAGG(
+  //     JSON_OBJECT("id", category_details.id,
+  //     "name", category_details.detail_name)
+  //   ) as category_detail
+  //    FROM
+  //   category_details
+  //   WHERE
+  //     category_id = ${category_id}
+  //   `
+  // );
+  return { a, b };
+};
+// const category = async () => {
+//   return await myDataSource.query(
+//     `SELECT
+//    JSON_ARRAYAGG(
+//     JSON_OBJECT("id", categories.id,
+//     "name", categories.category_name)
+//   ) as categories
+//    FROM
+//   categories
+//   `
+//   );
+// };
+// const categoryDetail = async (category_id?: number) => {
+//   return await myDataSource.query(
+//     `SELECT
+//      JSON_ARRAYAGG(
+//       JSON_OBJECT("id", category_details.id,
+//       "name", category_details.detail_name)
+//     ) as category_detail
+//      FROM
+//     category_details
+//     WHERE
+//       category_id = ${category_id}
+//     `
+//   );
+// };
+
 const getlist = async (
   place_id?: number,
   category_id?: number,
@@ -18,7 +82,6 @@ const getlist = async (
     category_detail_id = ${category_detail_id}
     `;
   } else if (place_id === undefined && category_id && category_detail_id) {
-    console.log(1);
     condition = `
   WHERE
     category_id = ${category_id}
@@ -26,7 +89,6 @@ const getlist = async (
     category_detail_id = ${category_detail_id}
   `;
   } else if (place_id && category_id && category_detail_id === undefined) {
-    console.log(2);
     condition = `
   WHERE
     place_id = ${place_id}
@@ -38,7 +100,6 @@ const getlist = async (
     category_id &&
     category_detail_id === undefined
   ) {
-    console.log(3);
     condition = `
   WHERE
     category_id = ${category_id}
@@ -48,10 +109,9 @@ const getlist = async (
     category_id === undefined &&
     category_detail_id === undefined
   ) {
-    console.log(4);
     condition = `
-WHERE
-  place_id = ${place_id}
+  WHERE
+    place_id = ${place_id}
 `;
   } else if (
     place_id === undefined &&
@@ -59,7 +119,6 @@ WHERE
     category_detail_id === undefined
   ) {
     console.log(5);
-
     condition = `
   ORDER BY
     updated_at DESC
@@ -75,4 +134,4 @@ WHERE
   `);
 };
 
-export default { getlist };
+export default { place, getlist };

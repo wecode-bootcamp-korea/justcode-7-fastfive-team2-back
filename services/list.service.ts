@@ -1,5 +1,24 @@
 import listDao from "../models/list.dao";
-import { Example, listinfo } from "../type";
+import { listinfo } from "../type";
+
+const getDropdown = async () =>
+  //category_id: number
+  {
+    const result = await listDao
+      .place
+      //category_id
+      ();
+
+    const places = result.a[0].places;
+    const categories = result.b[0].categories;
+    //const categories_detail = result.c[0].category_detail;
+
+    return {
+      places,
+      categories,
+      //categories_detail
+    };
+  };
 
 //전체보기: 지역, 카테고리, 상세분야 필터링 O
 const getlist = async (
@@ -19,4 +38,4 @@ const getlist = async (
   return getList;
 };
 
-export default { getlist };
+export default { getDropdown, getlist };

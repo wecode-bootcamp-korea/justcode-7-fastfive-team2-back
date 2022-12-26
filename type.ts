@@ -31,6 +31,17 @@ export interface CorporationInfo {
   membersBenefits?: string;
 }
 
+export interface Example {
+  place_id?: number;
+  category_id?: number;
+  category_detail_id?: number;
+}
+
+export interface listinfo {
+  corporation_name: string;
+  image: string;
+  introduction: string;
+  
 export interface Request {
   userInfo?: object;
 }

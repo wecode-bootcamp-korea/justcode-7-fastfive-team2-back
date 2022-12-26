@@ -51,11 +51,14 @@ CREATE TABLE `comments` (
   `users_id` int NOT NULL,
   `content` varchar(2500) NOT NULL,
   `secret` int NOT NULL DEFAULT '0',
+  `corporation_id` int NOT NULL,
   `created_at` datetime NOT NULL DEFAULT (now()),
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'update time',
   PRIMARY KEY (`id`),
   KEY `users_id` (`users_id`),
-  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`)
+  KEY `corporation_id` (`corporation_id`),
+  CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`corporation_id`) REFERENCES `corporation` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -173,7 +176,7 @@ CREATE TABLE `users` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping routines for database 'fastfive'
+-- Dumping routines for database 'project_fastfive'
 --
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

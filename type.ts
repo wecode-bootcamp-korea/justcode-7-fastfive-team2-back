@@ -41,4 +41,7 @@ export interface listinfo {
   corporation_name: string;
   image: string;
   introduction: string;
+  
+export interface Request {
+  userInfo?: object;
 }

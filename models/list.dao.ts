@@ -1,7 +1,7 @@
 import myDataSource from "./index";
 
-const getDropdown = async (category_id?: number) => {
-  let a = await myDataSource.query(
+const getDropdown = async () => {
+  let place = await myDataSource.query(
     `SELECT
     JSON_ARRAYAGG(
   JSON_OBJECT("id", places.id,
@@ -12,7 +12,7 @@ places
 `
   );
 
-  let b = await myDataSource.query(
+  let category = await myDataSource.query(
     `SELECT
    JSON_ARRAYAGG(
     JSON_OBJECT("id", categories.id,
@@ -23,7 +23,11 @@ places
   `
   );
 
-  let c = await myDataSource.query(
+  return { place, category };
+};
+
+const getDropdownDetail = async (category_id?: number) => {
+  let detail = await myDataSource.query(
     `SELECT
      JSON_ARRAYAGG(
       JSON_OBJECT("id", category_details.id,
@@ -35,7 +39,7 @@ places
       category_id = ${category_id}
     `
   );
-  return { a, b, c };
+  return { detail }; //이게 객체 형태여야 서비스에서 result.detail로 값을 찾을수있음
 };
 
 const getlist = async (
@@ -108,4 +112,4 @@ const getlist = async (
   `);
 };
 
-export default { getDropdown, getlist };
+export default { getDropdown, getDropdownDetail, getlist };

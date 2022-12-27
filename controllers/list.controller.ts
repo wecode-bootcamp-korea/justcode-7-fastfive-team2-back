@@ -4,9 +4,10 @@ import { Request, Response } from "express";
 //드롭다운 정보 불러오기
 const getDropdown = async (req: Request, res: Response) => {
   try {
-    //const { category_id } = req.query;
-    const result = await listService.getDropdown();
-    //Number(category_id)
+    const { category_id } = req.query;
+    const result = await listService.getDropdown(
+      category_id ? Number(category_id) : undefined
+    );
 
     res.status(200).json(result);
   } catch (err: any) {

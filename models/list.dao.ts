@@ -1,6 +1,6 @@
 import myDataSource from "./index";
 
-const place = async (category_id?: number) => {
+const getDropdown = async (category_id?: number) => {
   let a = await myDataSource.query(
     `SELECT
     JSON_ARRAYAGG(
@@ -23,46 +23,20 @@ places
   `
   );
 
-  // let c = await myDataSource.query(
-  //   `SELECT
-  //    JSON_ARRAYAGG(
-  //     JSON_OBJECT("id", category_details.id,
-  //     "name", category_details.detail_name)
-  //   ) as category_detail
-  //    FROM
-  //   category_details
-  //   WHERE
-  //     category_id = ${category_id}
-  //   `
-  // );
-  return { a, b };
+  let c = await myDataSource.query(
+    `SELECT
+     JSON_ARRAYAGG(
+      JSON_OBJECT("id", category_details.id,
+      "name", category_details.detail_name)
+    ) as category_detail
+     FROM
+    category_details
+    WHERE
+      category_id = ${category_id}
+    `
+  );
+  return { a, b, c };
 };
-// const category = async () => {
-//   return await myDataSource.query(
-//     `SELECT
-//    JSON_ARRAYAGG(
-//     JSON_OBJECT("id", categories.id,
-//     "name", categories.category_name)
-//   ) as categories
-//    FROM
-//   categories
-//   `
-//   );
-// };
-// const categoryDetail = async (category_id?: number) => {
-//   return await myDataSource.query(
-//     `SELECT
-//      JSON_ARRAYAGG(
-//       JSON_OBJECT("id", category_details.id,
-//       "name", category_details.detail_name)
-//     ) as category_detail
-//      FROM
-//     category_details
-//     WHERE
-//       category_id = ${category_id}
-//     `
-//   );
-// };
 
 const getlist = async (
   place_id?: number,
@@ -134,4 +108,4 @@ const getlist = async (
   `);
 };
 
-export default { place, getlist };
+export default { getDropdown, getlist };

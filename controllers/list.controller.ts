@@ -1,12 +1,23 @@
 import listService from "../services/list.service";
 import { Request, Response } from "express";
 
-//드롭다운 정보 불러오기
 const getDropdown = async (req: Request, res: Response) => {
   try {
-    //const { category_id } = req.query;
     const result = await listService.getDropdown();
-    //Number(category_id)
+
+    res.status(200).json(result);
+  } catch (err: any) {
+    console.log(err);
+    res.status(400).json({ message: err.message });
+  }
+};
+//드롭다운 정보 불러오기- 상세분야
+const getDropdownDetail = async (req: Request, res: Response) => {
+  try {
+    const { category_id } = req.query;
+    const result = await listService.getDropdownDetail(
+      category_id ? Number(category_id) : undefined
+    );
 
     res.status(200).json(result);
   } catch (err: any) {
@@ -33,5 +44,6 @@ const getlist = async (req: Request, res: Response) => {
 
 export default {
   getDropdown,
+  getDropdownDetail,
   getlist,
 };

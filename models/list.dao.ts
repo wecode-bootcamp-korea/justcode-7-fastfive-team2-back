@@ -1,7 +1,7 @@
 import myDataSource from "./index";
 
-const place = async (category_id?: number) => {
-  let a = await myDataSource.query(
+const getDropdown = async () => {
+  let place = await myDataSource.query(
     `SELECT
     JSON_ARRAYAGG(
   JSON_OBJECT("id", places.id,
@@ -12,7 +12,7 @@ places
 `
   );
 
-  let b = await myDataSource.query(
+  let category = await myDataSource.query(
     `SELECT
    JSON_ARRAYAGG(
     JSON_OBJECT("id", categories.id,
@@ -23,46 +23,24 @@ places
   `
   );
 
-  // let c = await myDataSource.query(
-  //   `SELECT
-  //    JSON_ARRAYAGG(
-  //     JSON_OBJECT("id", category_details.id,
-  //     "name", category_details.detail_name)
-  //   ) as category_detail
-  //    FROM
-  //   category_details
-  //   WHERE
-  //     category_id = ${category_id}
-  //   `
-  // );
-  return { a, b };
+  return { place, category };
 };
-// const category = async () => {
-//   return await myDataSource.query(
-//     `SELECT
-//    JSON_ARRAYAGG(
-//     JSON_OBJECT("id", categories.id,
-//     "name", categories.category_name)
-//   ) as categories
-//    FROM
-//   categories
-//   `
-//   );
-// };
-// const categoryDetail = async (category_id?: number) => {
-//   return await myDataSource.query(
-//     `SELECT
-//      JSON_ARRAYAGG(
-//       JSON_OBJECT("id", category_details.id,
-//       "name", category_details.detail_name)
-//     ) as category_detail
-//      FROM
-//     category_details
-//     WHERE
-//       category_id = ${category_id}
-//     `
-//   );
-// };
+
+const getDropdownDetail = async (category_id?: number) => {
+  let detail = await myDataSource.query(
+    `SELECT
+     JSON_ARRAYAGG(
+      JSON_OBJECT("id", category_details.id,
+      "name", category_details.detail_name)
+    ) as category_detail
+     FROM
+    category_details
+    WHERE
+      category_id = ${category_id}
+    `
+  );
+  return { detail }; //이게 객체 형태여야 서비스에서 result.detail로 값을 찾을수있음
+};
 
 const getlist = async (
   place_id?: number,
@@ -134,4 +112,4 @@ const getlist = async (
   `);
 };
 
-export default { place, getlist };
+export default { getDropdown, getDropdownDetail, getlist };
